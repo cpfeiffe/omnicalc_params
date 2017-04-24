@@ -2,13 +2,13 @@ class CalculationsController < ApplicationController
 
   def flex_square
     @user_number = params["number"].to_f
-    @square = @user_number **2
+    @square = (@user_number**2).round(2)
     render("calculations/flex_square.html.erb")
   end
 
   def flex_square_root
     @user_number = params["number"].to_f
-    @squareroot = @user_number **0.5
+    @squareroot = (@user_number**0.5).round(2)
     render("calculations/flex_square_root.html.erb")
   end
 
@@ -16,7 +16,7 @@ class CalculationsController < ApplicationController
     @years = params["years"].to_f
     @principal = params["principal"].to_f
     @apr = params["apr"].to_f/100
-    @monthly_payment = (((@apr/100/12) * (@principal)) / (1- (1+@apr/100/12)**(@years*-12)))
+    @monthly_payment = (((@apr/100/12) * (@principal)) / (1- (1+@apr/100/12)**(@years*-12))).round(2)
     render("calculations/flex_payment.html.erb")
   end
 
@@ -48,6 +48,16 @@ class CalculationsController < ApplicationController
   end
 
 
+  def payment_form
+    render("calculations/payment_form.html.erb")
+  end
 
+  def payment_results
+    @years = params["years"].to_f
+    @principal = params["principal"].to_f
+    @apr = params["apr"].to_f/100
+    @monthly_payment = (((@apr/100/12) * (@principal)) / (1- (1+@apr/100/12)**(@years*-12))).round(2)
+    render("calculations/payment_results.html.erb")
+  end
 
 end

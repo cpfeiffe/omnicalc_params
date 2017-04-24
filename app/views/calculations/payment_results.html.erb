@@ -1,0 +1,6 @@
+<h2>You entered a loan amount of <%= @principal %> due in <%= @years %> years with an interest rate of <%= @apr %>. </h2>
+<h2>Your monthly payment will be <%= @monthly_payment %></h2>
+
+<form action="/payment/new">
+  <button> Borrow More Money! </button>
+</form>
