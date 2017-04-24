@@ -1,6 +1,11 @@
+<h1> Payment Results </h1>
+
+<h2> APR </h2>
+<h3> <%= number_to_percentage(@apr, :precision => 2)%> </h3>
+
 <h2>You entered a loan amount of <%= @principal %> due in <%= @years %> years with an interest rate of <%= @apr %>. </h2>
 <h2>Your monthly payment will be <%= @monthly_payment %></h2>
 
 <form action="/payment/new">
-  <button> Borrow More Money! </button>
+  <button> Calculate monthly payment again!</button>
 </form>

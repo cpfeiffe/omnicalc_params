@@ -2,13 +2,13 @@ class CalculationsController < ApplicationController
 
   def flex_square
     @user_number = params["number"].to_f
-    @square = (@user_number**2).round(2)
+    @square = (@user_number**2).round(4)
     render("calculations/flex_square.html.erb")
   end
 
   def flex_square_root
     @user_number = params["number"].to_f
-    @squareroot = (@user_number**0.5).round(2)
+    @squareroot = (@user_number**0.5).round(4)
     render("calculations/flex_square_root.html.erb")
   end
 
@@ -58,6 +58,17 @@ class CalculationsController < ApplicationController
     @apr = params["apr"].to_f/100
     @monthly_payment = (((@apr/100/12) * (@principal)) / (1- (1+@apr/100/12)**(@years*-12))).round(2)
     render("calculations/payment_results.html.erb")
+  end
+
+  def random_form
+    render("calculations/random_form.html.erb")
+  end
+
+  def random_results
+    @min = params["min"].to_f
+    @max = params["max"].to_f
+    @user_number = rand(@min..@max)
+    render("calculations/random_results.html.erb")
   end
 
 end
